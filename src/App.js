@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SignInOutContainer from "./containers/Index";
+import { useUserContext } from "./context/userContext";
+import Dashboard from "./components/Dashboard";
 
 function App() {
+  const { loading, error, user } = useUserContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {error && <p>{error}</p>}
+      {loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <>{user ? <Dashboard /> : <SignInOutContainer />}</>
+      )}
+    </>
   );
 }
 
