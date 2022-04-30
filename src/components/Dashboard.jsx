@@ -1,8 +1,8 @@
-import React from "react";
-import { Button } from "@mui/material";
-import { useUserContext } from "../context/userContext";
+import React from 'react';
+import { Button } from '@mui/material';
+import { useUserContext } from '../context/userContext';
 
-const Dashboard = () => {
+function Dashboard() {
   const { user, signOutUser } = useUserContext();
   const { REACT_APP_FIREBASE_API_KEY } = process.env;
   console.log(REACT_APP_FIREBASE_API_KEY);
@@ -10,11 +10,11 @@ const Dashboard = () => {
   return (
     <>
       <div>Welcome! {user.displayName}</div>
-      <Button variant="contained" onClick={signOutUser}>
+      <Button variant='contained' onClick={signOutUser}>
         Log out
       </Button>
     </>
   );
-};
+}
 
 export default Dashboard;
