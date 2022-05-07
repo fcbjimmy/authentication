@@ -60,7 +60,17 @@ function UserContextProvider({ children }) {
     console.log({ password });
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => console.log(res))
-      .catch((err) => setError(err.message))
+      .catch((err) => {
+        if (err.message === 'Firebase: Error (auth/wrong-password).') {
+          setError('Invalid Password');
+        } else if (err.message === 'Firebase: Error (auth/user-not-found).') {
+          setError('Email Address not found');
+        } else if (err.message === 'Firebase: Error (auth/invalid-email).') {
+          setError('Invalid Emaill address');
+        } else {
+          setError(err.message);
+        }
+      })
       .finally(() => setLoading(false));
   };
 

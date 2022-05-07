@@ -7,12 +7,16 @@ import Dashboard from './components/Dashboard';
 function App() {
   const { loading, error, user } = useUserContext();
 
-  const test = user ? <Dashboard /> : <SignInOutContainer />;
+  const alertMessage = (err) => {
+    alert(err);
+  };
 
   return (
     <>
-      {error && <p>{error}</p>}
-      {loading ? <h2>Loading...</h2> : test}
+      {error && alertMessage(error)}
+      {loading && <h2>Loading...</h2>}
+      {!loading && user && <Dashboard />}
+      {!loading && user == null && <SignInOutContainer />}
     </>
   );
 }

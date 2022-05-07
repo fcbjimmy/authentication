@@ -3,6 +3,16 @@ import { Avatar, Button, Grid, Paper, TextField, Typography } from '@mui/materia
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useUserContext } from '../context/userContext';
 
+const paperStyle = {
+  padding: '20px',
+  width: '300px',
+  height: '60vh',
+  margin: '0 auto',
+};
+const headerStyle = { margin: 0 };
+const avatarStyle = { backgroundColor: '#1bbd7e' };
+const btnStyle = { margin: '20px 0' };
+
 function Signup() {
   const [registerName, setRegisterName] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
@@ -10,23 +20,9 @@ function Signup() {
 
   const { registerUser } = useUserContext();
 
-  const paperStyle = {
-    padding: '20px',
-    width: '300px',
-    height: '60vh',
-    margin: '0 auto',
-  };
-  const headerStyle = { margin: 0 };
-  const avatarStyle = { backgroundColor: '#1bbd7e' };
-  const btnStyle = { margin: '20px 0' };
-
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    // console.log({ registerEmail });
-    // console.log({ registerPassword });
-    // setRegisterEmail("");
-    // setRegisterPassword("");
     if (registerName && registerEmail && registerName)
       registerUser(registerName, registerEmail, registerPassword);
   };

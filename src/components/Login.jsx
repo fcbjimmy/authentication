@@ -26,8 +26,6 @@ function Login({ handleChange }) {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(loginEmail);
-    console.log(loginPassword);
     if (loginEmail && loginPassword) loginUser(loginEmail, loginPassword);
   };
 
