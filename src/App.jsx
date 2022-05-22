@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import SignInOutContainer from './containers/Index';
 import { useUserContext } from './context/userContext';
-import Dashboard from './components/Dashboard';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   const { loading, error, user } = useUserContext();

@@ -24,7 +24,6 @@ export const signInWithGmail = () => {
     .catch((error) => console.log(error));
 };
 
-// eslint-disable-next-line react/prop-types
 function UserContextProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState();
@@ -34,7 +33,6 @@ function UserContextProvider({ children }) {
     setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (account) => {
       console.log('user status changed', account);
-      // eslint-disable-next-line no-unused-expressions
       account ? setUser(account) : setUser(null);
       console.log(account);
       setError('');
@@ -46,8 +44,8 @@ function UserContextProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  const registerUser = (name, email, password) => {
-    console.log(name, email, password);
+  const registerUser = (name, email, password, confirmPassword) => {
+    console.log(name, email, password, confirmPassword);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => updateProfile(auth.currentUser, { displayName: name }))
       .then((res) => console.log(res))
@@ -80,7 +78,6 @@ function UserContextProvider({ children }) {
 
   const forgotPassword = (email) => sendPasswordResetEmail(auth, email);
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const contextValue = {
     user,
     loading,
@@ -89,6 +86,7 @@ function UserContextProvider({ children }) {
     loginUser,
     signOutUser,
     forgotPassword,
+    setError,
   };
 
   return <userContext.Provider value={contextValue}>{children}</userContext.Provider>;

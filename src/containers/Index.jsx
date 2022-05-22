@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Paper, Box, Typography } from '@mui/material';
-import Login from '../components/Login';
-import Signup from '../components/Signup';
+import Login from '../pages/Login';
+import Signup from '../pages/Signup';
 
 const paperStyle = { width: '340px', margin: '20px auto' };
 
 function TabPanel(props) {
-  // eslint-disable-next-line react/prop-types
   const { children, value, index, ...other } = props;
-
+  console.log(value);
   return (
     <div
       role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...other}
     >
       {value === index && (
@@ -28,10 +26,11 @@ function TabPanel(props) {
 }
 
 function SignInOutContainer() {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
 
-  const handleChange = (newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log(newValue);
   };
 
   console.log({ value });

@@ -5,7 +5,7 @@ import { useUserContext } from '../context/userContext';
 
 const paperStyle = {
   padding: '20px',
-  width: '300px',
+  width: '100%',
   height: '60vh',
   margin: '0 auto',
 };
@@ -17,14 +17,21 @@ function Signup() {
   const [registerName, setRegisterName] = useState('');
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
 
-  const { registerUser } = useUserContext();
+  const { registerUser, setError } = useUserContext();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    if (confirmPassword === '') {
+      setPasswordError(false);
+    }
 
-    if (registerName && registerEmail && registerName)
-      registerUser(registerName, registerEmail, registerPassword);
+    if (registerPassword !== confirmPassword) {
+      setPasswordError(true);
+    } else if (registerName && registerEmail && registerPassword && confirmPassword)
+      registerUser(registerName, registerEmail, registerPassword, confirmPassword);
   };
 
   return (
@@ -39,6 +46,7 @@ function Signup() {
         </Grid>
         <form onSubmit={onSubmitHandler}>
           <TextField
+            required
             variant='standard'
             fullWidth
             label='Name'
@@ -47,6 +55,7 @@ function Signup() {
             }}
           />
           <TextField
+            required
             variant='standard'
             fullWidth
             label='Email'
@@ -56,6 +65,7 @@ function Signup() {
             value={registerEmail}
           />
           <TextField
+            required
             variant='standard'
             fullWidth
             label='Password'
@@ -63,7 +73,16 @@ function Signup() {
             onChange={(e) => setRegisterPassword(e.target.value)}
             value={registerPassword}
           />
-          <TextField variant='standard' fullWidth label='Confirm Password' />
+          <TextField
+            required
+            variant='standard'
+            fullWidth
+            label='Confirm Password'
+            type='password'
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={confirmPassword}
+            {...(passwordError && { error: true, helperText: 'passwords do not match' })}
+          />
           <Button type='submit' variant='contained' color='primary' style={btnStyle} fullWidth>
             Sign up
           </Button>
