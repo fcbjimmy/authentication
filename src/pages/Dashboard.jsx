@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TodoApp from '../components/TodoApp/TodoApp';
 import { Button, Typography, Box, InputAdornment } from '@mui/material';
 import { useUserContext } from '../context/userContext';
@@ -6,6 +6,7 @@ import '../App.css';
 import { top } from '@mui/system';
 import IconButton from '@mui/material/IconButton';
 import Clock from '../components/Clock/Clock';
+import Welcome from './Welcome';
 
 function Dashboard() {
   const { user, signOutUser } = useUserContext();
@@ -20,7 +21,7 @@ function Dashboard() {
         }}
       >
         <Typography>{''}</Typography>
-        <Typography sx={{ ml: 10 }}>Welcome! {user.displayName}</Typography>
+        <Welcome />
         <Button variant='contained' onClick={signOutUser}>
           Log out
         </Button>

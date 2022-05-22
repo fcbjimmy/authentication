@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 *,
 *::after,
 *::before {
   box-sizing: border-box;
-  font-family: 'Cormorant', serif;
+  font-family: 'Roboto', serif;
 }
 
 .message {
@@ -21,4 +21,8 @@
 
 .clock {
   font-size: 1.6rem;
+}
+
+.capitalize-me::first-letter {
+  text-transform: capitalize;
 }
