@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import TodoApp from '../components/TodoApp/TodoApp';
+import TodoApp from '../todoapp/TodoApp';
 import { Button, Typography, Box, InputAdornment } from '@mui/material';
-import { useUserContext } from '../context/userContext';
-import '../App.css';
-import { top } from '@mui/system';
-import IconButton from '@mui/material/IconButton';
-import Clock from '../components/Clock/Clock';
+import { useUserContext } from '../../context/userContext';
+import '../../App.css';
+import Clock from '../clock/Clock';
 import Welcome from './Welcome';
 
 function Dashboard() {

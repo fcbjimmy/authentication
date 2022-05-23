@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar, Button, Grid, Paper, TextField, Typography } from '@mui/material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import { useUserContext } from '../context/userContext';
+import { useUserContext } from '../../context/userContext';
 
 const paperStyle = {
   padding: '20px',

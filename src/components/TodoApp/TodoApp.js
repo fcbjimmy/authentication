@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Input from '../Input/Input';
-import TodosList from '../TodosList/TodosList';
+import Input from '../input/Input';
+import TodosList from '../todoslist/TodosList';
 import { Paper, Typography } from '@mui/material';
 
 const paperStyle = {
@@ -44,23 +44,19 @@ function TodoApp() {
       }
       return todo;
     });
-    console.log(updatedtodo);
+
     setTodos(updatedtodo);
   }
 
   function deleteHandler(id) {
-    console.log(id);
     const test = todos.filter((todo) => todo.id !== id);
     setTodos(test);
   }
 
   function checkToDo(id) {
-    console.log(id);
-
     const todoCheck = todos.map((todo) => {
       if (todo.id === id) {
         todo.isCompleted = !todo.isCompleted;
-        console.log(todo.isCompleted);
       }
       return todo;
     });

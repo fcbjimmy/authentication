@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
-import { useUserContext } from '../context/userContext';
+import { useUserContext } from '../../context/userContext';
 
 const capitalize = (name) => {
   return `${name[0].toUpperCase()}${name.substring(1).toLowerCase()}`;
@@ -17,8 +17,6 @@ function Welcome() {
       setUsername(name);
     }
   }, [user.displayName]);
-
-  console.log(username);
 
   return <Typography sx={{ ml: 10 }}>Welcome! {username}</Typography>;
 }

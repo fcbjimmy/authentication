@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import Input from '../Input/Input';
+import Input from '../input/Input';
 import { Box, Paper } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import './Styles.css';
+import './styles.css';
 
-function Todo(props) {
+function Todo({ id, deleteToDo, todo, updateToDo, CheckToDo, isCompleted }) {
   const [edit, setEdit] = useState({
     id: null,
     value: '',
@@ -14,13 +14,11 @@ function Todo(props) {
   });
 
   function handleTodoIdClick(e) {
-    console.log(props.id);
-    props.deleteToDo(props.id);
+    deleteToDo(id);
   }
 
   function submitUpdateHandler(value) {
-    props.updateToDo(edit.id, value);
-    console.log(value);
+    updateToDo(edit.id, value);
     setEdit({
       id: null,
       value: '',
@@ -29,7 +27,7 @@ function Todo(props) {
 
   function handleCheckClick(e) {
     e.preventDefault();
-    props.CheckToDo(props.id);
+    CheckToDo(id);
   }
 
   if (edit.id) {
@@ -52,20 +50,16 @@ function Todo(props) {
           flex: 1,
         }}
       >
-        {props.isCompleted ? (
-          <s className='todo'>{props.todo}</s>
-        ) : (
-          <div className='todo'>{props.todo}</div>
-        )}
+        {isCompleted ? <s className='todo'>{todo}</s> : <div className='todo'>{todo}</div>}
         <div>
           <CheckCircleOutlineIcon onClick={handleCheckClick} />
           <DeleteOutlineIcon onClick={handleTodoIdClick} />
           <ModeEditIcon
             onClick={() =>
               setEdit({
-                id: props.id,
-                value: props.todo,
-                isCompleted: props.isCompleted,
+                id: id,
+                value: todo,
+                isCompleted: isCompleted,
               })
             }
           />

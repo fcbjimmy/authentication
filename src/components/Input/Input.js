@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Button, TextField, FormControl } from "@mui/material";
+import React, { useState } from 'react';
+import { Button, TextField, FormControl } from '@mui/material';
 
-function Input(props) {
-  const [todo, setTodo] = useState(props.edit ? props.edit.value : "");
+function Input({ edit, onSubmit, onAddtodo }) {
+  const [todo, setTodo] = useState(edit ? edit.value : '');
   function handleInputChange(e) {
     setTodo(e.target.value);
   }
@@ -14,29 +14,24 @@ function Input(props) {
       id: Date.now(),
       isCompleted: false,
     };
-    props.edit ? props.onSubmit(todo) : props.onAddtodo(data);
-    setTodo("");
+    edit ? onSubmit(todo) : onAddtodo(data);
+    setTodo('');
   }
 
   return (
     <form onSubmit={handleFormSubmit}>
       <FormControl fullWidth>
-        <label htmlFor="todo"></label>
-        {props.edit ? (
+        <label htmlFor='todo'></label>
+        {edit ? (
           <>
             <TextField
-              label=""
+              label=''
               value={todo}
               onChange={handleInputChange}
-              size="small"
+              size='small'
               sx={{ mt: 2 }}
             />
-            <Button
-              sx={{ mt: 1.5 }}
-              color="primary"
-              variant="contained"
-              type="submit"
-            >
+            <Button sx={{ mt: 1.5 }} color='primary' variant='contained' type='submit'>
               Update
             </Button>
           </>
@@ -44,17 +39,12 @@ function Input(props) {
           <>
             <TextField
               value={todo}
-              placeholder="Enter to do"
-              type="text"
+              placeholder='Enter to do'
+              type='text'
               onChange={handleInputChange}
               required
             ></TextField>
-            <Button
-              sx={{ mt: 1.5 }}
-              color="primary"
-              variant="contained"
-              type="submit"
-            >
+            <Button sx={{ mt: 1.5 }} color='primary' variant='contained' type='submit'>
               Add
             </Button>
           </>

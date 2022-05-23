@@ -15,9 +15,9 @@ import Checkbox from '@mui/material/Checkbox';
 import GoogleIcon from '@mui/icons-material/Google';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { useUserContext, signInWithGmail } from '../context/userContext';
+import { useUserContext, signInWithGmail } from '../../context/userContext';
 import IconButton from '@mui/material/IconButton';
-import '../App.css';
+import '../../App.css';
 
 const paperStyle = {
   padding: 20,

@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Tabs, Tab, Paper, Box, Typography } from '@mui/material';
-import Login from '../pages/Login';
-import Signup from '../pages/Signup';
+import Login from '../components/authentication/Login';
+import Signup from '../components/authentication/Signup';
 
 const paperStyle = { width: '340px', margin: '20px auto' };
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-  console.log(value);
+function TabPanel({ children, value, index, ...other }) {
   return (
     <div
       role='tabpanel'
@@ -30,10 +28,7 @@ function SignInOutContainer() {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(newValue);
   };
-
-  console.log({ value });
 
   return (
     <Paper elevation={20} style={paperStyle}>

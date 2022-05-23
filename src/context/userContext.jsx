@@ -19,33 +19,25 @@ const useUserContext = () => useContext(userContext);
 const googleProvider = new GoogleAuthProvider();
 
 export const signInWithGmail = () => {
-  signInWithPopup(auth, googleProvider)
-    .then((result) => console.log(result))
-    .catch((error) => console.log(error));
+  signInWithPopup(auth, googleProvider);
 };
 
 function UserContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState();
   const [error, setError] = useState('');
 
   useEffect(() => {
     setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (account) => {
-      console.log('user status changed', account);
       account ? setUser(account) : setUser(null);
-      console.log(account);
       setError('');
       setLoading(false);
-      account.getIdToken().then((token) => {
-        console.log(token);
-      });
     });
     return unsubscribe;
-  }, []);
+  }, [user]);
 
   const registerUser = (name, email, password, confirmPassword) => {
-    console.log(name, email, password, confirmPassword);
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => updateProfile(auth.currentUser, { displayName: name }))
       .then((res) => console.log(res))
@@ -54,8 +46,6 @@ function UserContextProvider({ children }) {
   };
 
   const loginUser = (email, password) => {
-    console.log({ email });
-    console.log({ password });
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => console.log(res))
       .catch((err) => {
