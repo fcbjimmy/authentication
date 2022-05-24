@@ -13,7 +13,6 @@ import { auth } from '../firebase/firebase-config';
 
 const userContext = createContext();
 
-//   custom use userContext hook so that we can use it diretcly in our child components and all childs can directly have access to all the below values
 const useUserContext = () => useContext(userContext);
 
 const googleProvider = new GoogleAuthProvider();
@@ -37,10 +36,10 @@ function UserContextProvider({ children }) {
     return unsubscribe;
   }, [user]);
 
-  const registerUser = (name, email, password, confirmPassword) => {
+  const registerUser = (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => updateProfile(auth.currentUser, { displayName: name }))
-      .then((res) => console.log(res))
+      .then((res) => setUser(res))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   };

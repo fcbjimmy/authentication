@@ -6,23 +6,3 @@
   box-sizing: border-box;
   font-family: 'Roboto', serif;
 }
-
-.message {
-  text-align: center;
-  font-size: 1.6rem;
-  position: relative;
-}
-
-.logout {
-  position: fixed;
-  right: 0;
-  top: 0;
-}
-
-.clock {
-  font-size: 1.6rem;
-}
-
-.capitalize-me::first-letter {
-  text-transform: capitalize;
-}

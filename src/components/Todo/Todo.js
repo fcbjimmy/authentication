@@ -4,7 +4,7 @@ import { Box, Paper } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import './styles.css';
+import todoCSS from './styles.module.css';
 
 function Todo({ id, deleteToDo, todo, updateToDo, CheckToDo, isCompleted }) {
   const [edit, setEdit] = useState({
@@ -50,7 +50,11 @@ function Todo({ id, deleteToDo, todo, updateToDo, CheckToDo, isCompleted }) {
           flex: 1,
         }}
       >
-        {isCompleted ? <s className='todo'>{todo}</s> : <div className='todo'>{todo}</div>}
+        {isCompleted ? (
+          <s className={todoCSS.todo}>{todo}</s>
+        ) : (
+          <div className={todoCSS.todo}>{todo}</div>
+        )}
         <div>
           <CheckCircleOutlineIcon onClick={handleCheckClick} />
           <DeleteOutlineIcon onClick={handleTodoIdClick} />

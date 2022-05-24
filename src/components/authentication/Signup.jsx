@@ -31,7 +31,7 @@ function Signup() {
     if (registerPassword !== confirmPassword) {
       setPasswordError(true);
     } else if (registerName && registerEmail && registerPassword && confirmPassword)
-      registerUser(registerName, registerEmail, registerPassword, confirmPassword);
+      registerUser(registerName, registerEmail, registerPassword);
   };
 
   return (
