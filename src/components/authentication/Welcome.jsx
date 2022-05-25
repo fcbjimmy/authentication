@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { useUserContext } from '../../context/userContext';
 
 const capitalize = (name) => {
-  const array = name.split(' ');
+  const array = name.trim().split(' ');
   console.log(array);
   const cap = array.map((word) => `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`);
   const fullname = cap.join(' ');
@@ -13,7 +13,6 @@ const capitalize = (name) => {
 function Welcome() {
   const [username, setUsername] = useState('');
   const { user } = useUserContext();
-  console.log(user);
 
   useEffect(() => {
     if (user) {
@@ -26,7 +25,7 @@ function Welcome() {
 
   return (
     <Typography sx={{ ml: 10 }}>
-      Welcome! {username === undefined ? 'Loading...' : username}
+      Welcome! {user?.displayName === null ? 'Loading...' : username}
     </Typography>
   );
 }
