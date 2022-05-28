@@ -51,7 +51,8 @@ function UserContextProvider({ children }) {
       .then((res) => console.log(res))
       .catch((err) => {
         if (err.message === 'Firebase: Error (auth/wrong-password).') {
-          console.log(err.message);
+          console.log(err.code);
+          console.log(typeof err.code); // string
           setError('Invalid Password');
         } else if (err.message === 'Firebase: Error (auth/user-not-found).') {
           setError('Email Address not found');

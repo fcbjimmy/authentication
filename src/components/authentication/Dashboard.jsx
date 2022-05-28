@@ -11,16 +11,13 @@ function Dashboard() {
 
   return (
     <>
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'nowrap',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Typography>{''}</Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Welcome />
-        <Button variant='contained' onClick={signOutUser}>
+        <Button
+          variant='contained'
+          style={{ position: 'absolute', top: '0', right: '0' }}
+          onClick={signOutUser}
+        >
           Log out
         </Button>
       </Box>
