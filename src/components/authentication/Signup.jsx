@@ -20,7 +20,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
-  const { registerUser, setError } = useUserContext();
+  const { registerUser } = useUserContext();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();

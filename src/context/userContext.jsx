@@ -9,6 +9,7 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase-config';
+import { errorCode } from './helper';
 
 const userContext = createContext();
 
@@ -40,27 +41,15 @@ function UserContextProvider({ children }) {
       .then(() => updateProfile(auth.currentUser, { displayName: name }))
       .then((res) => setUser(res))
       .catch((err) => {
-        console.log(err.code);
-        setError(err.message);
+        setError(errorCode(err.code));
       })
       .finally(() => setLoading(false));
   };
 
   const loginUser = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((res) => console.log(res))
       .catch((err) => {
-        if (err.message === 'Firebase: Error (auth/wrong-password).') {
-          console.log(err.code);
-          console.log(typeof err.code); // string
-          setError('Invalid Password');
-        } else if (err.message === 'Firebase: Error (auth/user-not-found).') {
-          setError('Email Address not found');
-        } else if (err.message === 'Firebase: Error (auth/invalid-email).') {
-          setError('Invalid Emaill address');
-        } else {
-          setError(err.message);
-        }
+        console.log(err.code);
       })
       .finally(() => setLoading(false));
   };
