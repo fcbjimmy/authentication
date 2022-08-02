@@ -7,6 +7,7 @@ import {
   signOut,
   sendPasswordResetEmail,
   GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../firebase/firebase-config';
 import { errorCode } from './helper';
@@ -17,7 +18,7 @@ const useUserContext = () => useContext(userContext);
 
 const googleProvider = new GoogleAuthProvider();
 
-export const signInWithGmail = () => {
+const signInWithGmail = () => {
   signInWithPopup(auth, googleProvider);
 };
 
@@ -69,6 +70,7 @@ function UserContextProvider({ children }) {
     signOutUser,
     forgotPassword,
     setError,
+    signInWithGmail,
   };
 
   return <userContext.Provider value={contextValue}>{children}</userContext.Provider>;

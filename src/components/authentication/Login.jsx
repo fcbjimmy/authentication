@@ -48,7 +48,7 @@ function Login({ handleChange }) {
     event.preventDefault();
   };
 
-  const { loginUser, forgotPassword } = useUserContext();
+  const { loginUser, forgotPassword, signInWithGmail } = useUserContext();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -73,9 +73,9 @@ function Login({ handleChange }) {
         <form onSubmit={onSubmitHandler}>
           <TextField
             label='Email'
+            required
             placeholder='Enter email'
             fullWidth
-            required
             variant='standard'
             value={loginEmail}
             onChange={(e) => {
@@ -84,9 +84,9 @@ function Login({ handleChange }) {
           />
           <TextField
             label='Password'
+            required
             placeholder='Enter password'
             fullWidth
-            required
             type={!values.showPassword ? 'password' : 'text'}
             variant='standard'
             value={loginPassword}
